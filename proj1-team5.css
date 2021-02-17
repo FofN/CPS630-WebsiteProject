@@ -1,0 +1,23 @@
+/*
+CPS630 - Lab 2
+Section 2 Members:
+	Justin Maliwat	500899430
+	Diwei Guan		500879852
+	Deep Oza		500830262
+*/
+
+.title {
+    text-align: center;
+}
+
+table,td,th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
