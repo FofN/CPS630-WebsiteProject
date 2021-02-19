@@ -134,7 +134,7 @@ include 'scripts/post_manager.php';
                     <!-- Geo Location -->
                     <div class="col-7 text-center bg-white">
                         <script
-                        src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&callback=showMap&libraries=&v=weekly"
+                        src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&callback=showMap&libraries=places&v=weekly"
                         async
                         ></script>
                         <div id="map"></div> 
