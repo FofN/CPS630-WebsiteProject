@@ -53,6 +53,14 @@ class directionsHandler{
             (response, status) => {
               if (status === "OK") {
                 me.directionsRenderer.setDirections(response);
+                let directionData = response.routes[0].legs[0];
+                if(!directionData){
+                    window.alert("Could not calculate distance.");
+                    return;
+                }
+                else {
+                    document.getElementById("distance").innerHTML += "Driving Distance is " + directionData.distance.text;
+                }
               } else {
                 window.alert("Directions request failed due to " + status);
               }

@@ -105,11 +105,12 @@ Section 2 Members:
                         <!-- Date Time -->
                         <label for="txtDateTime"><strong>Date and Time</strong></label>
                         <br>
-
+                    
                         <input id="txtDateTime" name="txtDateTime" type="datetime-local">
                         <br>
                         <br>
-
+                        <h5 id="distance"></h5>
+                        <br>
                         <div>
                             <button type="submit" id="btnDriveOrder" name="btnDriveOrder" class="btn btn-secondary m-2">Book Ride</button>
                             <button type="reset" id="btnClear" name="btnClear" class="btn btn-danger m-2">Clear</button>
