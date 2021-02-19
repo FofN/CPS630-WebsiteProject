@@ -8,6 +8,10 @@ Section 2 Members:
 
 <?php
 
+session_start();
+
+include 'scripts/connect_to_database.php';
+include 'scripts/post_manager.php';
 
 ?>
 
@@ -18,7 +22,8 @@ Section 2 Members:
         <title>Buber Drive</title>
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="http://localhost/CPS630/Project1/proj1.css"/>
+        <link rel="stylesheet" href="proj1.css"/>
+        <script src="./map.js"></script>
     </head>
 
     <body>
@@ -28,7 +33,7 @@ Section 2 Members:
             <div class="container-fluid">
 
                 <!-- Title of NavBar -->
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="main.html">
                     Buber
                 </a>
 
@@ -56,7 +61,7 @@ Section 2 Members:
 
                 <!-- Navbar options right -->
                 <div class="navbar-nav ml-auto">
-                    <a class="nav-link" href="#">Shopping Cart</a>
+                    <a class="nav-link" href="shopping_cart.php">Shopping Cart</a>
                     <a class="nav-link" href="#">Sign Up</a>
                 </div>
             </div>
@@ -65,7 +70,7 @@ Section 2 Members:
 
         <!-- Menu Start -->
         <div class="container-fluid">
-            <form id="formDrive">
+            <form id="formDrive" action="drive.php" method="POST">
                 <div class="row justify-content-center bg-secondary">
 
                     <!-- Form Information -->
@@ -76,11 +81,21 @@ Section 2 Members:
                         <br>
 
                         <select id="dropCars" name="dropCars" form="formDrive">
+
                             <option selected disabled>Select Car Type</option>
-                            <option>Economy</option>
-                            <option>Business</option>
-                            <option>First Class</option>
-                            <option>Luxury</option>
+
+                            <!-- Get Car Models From Database -->
+                            <?php
+                            // Check if the database is connected
+                            if (isset($pdo)) {
+                                $sql = "SELECT * FROM cars ORDER BY car_id";
+                                $result = $pdo->query($sql);
+                                while ($row = $result->fetch()) {
+                                    echo "<option>" . $row["car_model"] . "</option>";
+                                }
+                            }
+                            ?>
+
                         </select>
                         <br>
                         <br>
@@ -105,12 +120,12 @@ Section 2 Members:
                         <label for="txtDateTime"><strong>Date and Time</strong></label>
                         <br>
 
-                        <input id="txtDateTime" name="txtDateTime" type="datetime-local">
+                        <input id="txtDateTime" name="txtDateTime" type="datetime-local" form="formDrive">
                         <br>
                         <br>
 
                         <div>
-                            <button type="submit" id="btnDriveOrder" name="btnDriveOrder" class="btn btn-secondary m-2">Book Ride</button>
+                            <button type="submit" id="btnAddToCart" name="btnAddToCart" class="btn btn-secondary m-2">Add to Cart</button>
                             <button type="reset" id="btnClear" name="btnClear" class="btn btn-danger m-2">Clear</button>
                         </div>
 
@@ -118,15 +133,12 @@ Section 2 Members:
 
                     <!-- Geo Location -->
                     <div class="col-7 text-center bg-white">
-                        <select id="dropCars" name="dropCars" form="formDrive">
-                            <option selected disabled>Select Car</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
+                        <script
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7VmZBelJCkb7ZRX7Us3ijCeV42tcGras&callback=showMap&libraries=&v=weekly"
+                        async
+                        ></script>
+                        <div id="map"></div> 
                     </div>
-                    
                 </div>
             </form>
         </div>
