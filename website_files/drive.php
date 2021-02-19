@@ -1,5 +1,5 @@
 <!--
-CPS630 - Project Iteration 1
+CPS630 - Project I and II
 Section 2 Members:
 	Justin Maliwat	500899430
 	Diwei Guan		500879852
@@ -66,7 +66,7 @@ include 'scripts/post_manager.php';
                 </div>
             </div>
         </nav>
-        <!-- Navbar End-->
+        <!-- Navbar End -->
 
         <!-- Menu Start -->
         <div class="container-fluid">
@@ -74,7 +74,7 @@ include 'scripts/post_manager.php';
                 <div class="row justify-content-center bg-secondary">
 
                     <!-- Form Information -->
-                    <div class="col-2 text-center bg-white pt-2 pb-4">
+                    <div class="col-2 text-center bg-white my-auto">
 
                         <!-- Car Type -->
                         <label for="dropCars"><strong>Car Type</strong></label>
@@ -143,6 +143,16 @@ include 'scripts/post_manager.php';
             </form>
         </div>
         <!-- Menu End -->
+
+        <!-- Footer Start -->
+        <footer class="fixed-bottom container-fluid">
+            <div class="row justify-content-center bg-dark text-white">
+                <div class="col-9 p-5">
+                    <span>Footer</span>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer End -->
 
     </body>
 

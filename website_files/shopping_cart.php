@@ -1,5 +1,5 @@
 <!--
-CPS630 - Project Iteration 1
+CPS630 - Project I and II
 Section 2 Members:
 	Justin Maliwat	500899430
 	Diwei Guan		500879852
@@ -70,7 +70,7 @@ include 'scripts/post_manager.php';
 
         <!-- Menu Start -->
         <div class="container-fluid">
-            <div class="row justify-content-center bg-secondary">
+            <div class="row justify-content-center bg-white">
 
                 <!-- Shopping Cart -->
                 <div class="col-7 text-center bg-white pt-2 pb-4">
@@ -109,7 +109,7 @@ include 'scripts/post_manager.php';
                 </div>
 
                 <!-- Confirm Payment Tab -->
-                <div class="col-2 text-center bg-white">
+                <div class="col-2 text-center bg-white my-auto">
                     <form id="formConfirmPayment" action="shopping_cart.php" method="POST">
                         <button type="submit" id="btnConfirmPayment" name="btnConfirmPayment" class="btn btn-secondary m-2">Confirm Purchase</button>
                         <button type="submit" id="btnClearCart" name="btnClearCart" class="btn btn-danger m-2">Empty Cart</button>
@@ -120,7 +120,15 @@ include 'scripts/post_manager.php';
         </div>
         <!-- Menu End -->
 
-        
+        <!-- Footer Start -->
+        <footer class="fixed-bottom container-fluid">
+            <div class="row justify-content-center bg-dark text-white">
+                <div class="col-9 p-5">
+                    <span>Footer</span>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer End -->
 
     </body>
 
