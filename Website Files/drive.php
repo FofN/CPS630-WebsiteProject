@@ -18,7 +18,8 @@ Section 2 Members:
         <title>Buber Drive</title>
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="http://localhost/CPS630/Project1/proj1.css"/>
+        <link rel="stylesheet" href="http://192.168.64.2/cps630/project1/proj1.css"/>
+        <script src="./map.js"></script>
     </head>
 
     <body>
@@ -118,20 +119,16 @@ Section 2 Members:
 
                     <!-- Geo Location -->
                     <div class="col-7 text-center bg-white">
-                        <select id="dropCars" name="dropCars" form="formDrive">
-                            <option selected disabled>Select Car</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
+                        <script
+                        src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&callback=showMap&libraries=&v=weekly"
+                        async
+                        ></script>
+                        <div id="map"></div> 
                     </div>
-                    
                 </div>
             </form>
         </div>
         <!-- Menu End -->
-
     </body>
 
     <!-- Optional JS -->
