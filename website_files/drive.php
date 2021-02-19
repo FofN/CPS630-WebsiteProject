@@ -104,7 +104,7 @@ include 'scripts/post_manager.php';
                         <label for="txtOrigin"><strong>Origin</strong></label>
                         <br>
 
-                        <input id="txtOrigin" name="txtOrigin" type="text" form="formDrive">
+                        <input id="txtOrigin" name="txtOrigin" class="controls" type="text" form="formDrive">
                         <br>
                         <br>
 
@@ -112,7 +112,7 @@ include 'scripts/post_manager.php';
                         <label for="txtDestin"><strong>Destination</strong></label>
                         <br>
 
-                        <input id="txtDestin" name="txtDestin" type="text" form="formDrive">
+                        <input id="txtDestin" name="txtDestin" class="controls" type="text" form="formDrive">
                         <br>
                         <br>
                         
@@ -134,7 +134,7 @@ include 'scripts/post_manager.php';
                     <!-- Geo Location -->
                     <div class="col-7 text-center bg-white">
                         <script
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7VmZBelJCkb7ZRX7Us3ijCeV42tcGras&callback=showMap&libraries=&v=weekly"
+                        src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&callback=showMap&libraries=&v=weekly"
                         async
                         ></script>
                         <div id="map"></div> 
