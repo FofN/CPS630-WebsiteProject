@@ -90,7 +90,7 @@ Section 2 Members:
                         <label for="txtOrigin"><strong>Origin</strong></label>
                         <br>
 
-                        <input id="txtOrigin" name="txtOrigin" type="text" form="formDrive">
+                        <input id="txtOrigin" name="txtOrigin" class="controls" type="text" form="formDrive">
                         <br>
                         <br>
 
@@ -98,7 +98,7 @@ Section 2 Members:
                         <label for="txtDestin"><strong>Destination</strong></label>
                         <br>
 
-                        <input id="txtDestin" name="txtDestin" type="text" form="formDrive">
+                        <input id="txtDestin" name="txtDestin" class="controls" type="text" form="formDrive">
                         <br>
                         <br>
                         
@@ -120,7 +120,7 @@ Section 2 Members:
                     <!-- Geo Location -->
                     <div class="col-7 text-center bg-white">
                         <script
-                        src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&callback=showMap&libraries=&v=weekly"
+                        src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&callback=showMap&libraries=places&v=weekly"
                         async
                         ></script>
                         <div id="map"></div> 
