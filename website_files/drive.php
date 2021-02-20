@@ -53,7 +53,7 @@ include 'scripts/post_manager.php';
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item active" href="#">Buber Drive</a>
-                            <a class="dropdown-item" href="#">Buber Delivery</a>
+                            <a class="dropdown-item" href="delivery.php">Buber Delivery</a>
                         </div>
                     </div>
                     
@@ -134,7 +134,7 @@ include 'scripts/post_manager.php';
                     <!-- Geo Location -->
                     <div class="col-7 text-center bg-white">
                         <script
-                        src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&callback=showMap&libraries=places&v=weekly"
+                        src="https://maps.googleapis.com/maps/api/js?key=<?php include 'scripts/apikey.php';?>&callback=showMap&libraries=places&v=weekly"
                         async
                         ></script>
                         <div id="map"></div> 
