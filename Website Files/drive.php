@@ -65,9 +65,9 @@ Section 2 Members:
         <!-- Navbar End-->
 
         <!-- Menu Start -->
-        <div class="container-fluid">
+        <div class="container-fluid fill">
             <form id="formDrive">
-                <div class="row justify-content-center bg-secondary">
+                <div class="row justify-content-center">
 
                     <!-- Form Information -->
                     <div class="col-2 text-center bg-white pt-2 pb-4">
@@ -109,7 +109,9 @@ Section 2 Members:
                         <input id="txtDateTime" name="txtDateTime" type="datetime-local">
                         <br>
                         <br>
-                        <h5 id="distance"></h5>
+                        <label for="distance"><strong>Distance</strong></label>
+                        <br>
+                        <input id="distance" name="distance" type="text" form="formDrive" disabled>
                         <br>
                         <div>
                             <button type="submit" id="btnDriveOrder" name="btnDriveOrder" class="btn btn-secondary m-2">Book Ride</button>

@@ -59,7 +59,7 @@ class directionsHandler{
                     return;
                 }
                 else {
-                    document.getElementById("distance").innerHTML += "Driving Distance is " + directionData.distance.text;
+                    document.getElementById("distance").value = directionData.distance.text;
                 }
               } else {
                 window.alert("Directions request failed due to " + status);
