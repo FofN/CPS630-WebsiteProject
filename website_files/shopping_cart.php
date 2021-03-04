@@ -96,7 +96,7 @@ include 'scripts/post_manager.php';
                                 echo "<td>" . $_SESSION["arrCar"][$i] . "</td>";
                                 echo "<td>" . $_SESSION["arrSource"][$i] . "</td>";
                                 echo "<td>" . $_SESSION["arrDestin"][$i] . "</td>";
-                                echo "<td>" . "Unfinished" . "</td>";
+                                echo "<td>" . $_SESSION["arrDistance"][$i] . "</td>";
                                 echo "<td>" . "Unfinished" . "</td>";
                                 echo "</tr>";
                             }

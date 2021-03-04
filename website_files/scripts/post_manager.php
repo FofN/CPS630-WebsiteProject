@@ -23,7 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Trip/Delivery Table
         $_SESSION["arrSource"][] = $_POST["txtOrigin"];
         $_SESSION["arrDestin"][] = $_POST["txtDestin"];
-        //$_SESSION["arrDistance"][] = $_POST["dropGenres"];
+        echo $_POST["distance"];
+        $_SESSION["arrDistance"][] = $_POST["distance"];
         //$_SESSION["arrPrice"][] = $_POST["dropTypes"];
         
         $_SESSION["arrCar"][] = $_POST["dropCars"];

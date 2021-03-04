@@ -125,7 +125,7 @@ include 'scripts/post_manager.php';
                         <br>
                         <label for="distance"><strong>Distance</strong></label>
                         <br>
-                        <input id="distance" name="distance" type="text" form="formDrive" disabled>
+                        <input id="distance" name="distance" type="text" form="formDrive" readonly>
                         <br>
                         <div>
                             <button type="submit" id="btnAddToCart" name="btnAddToCart" class="btn btn-secondary m-2">Add to Cart</button>

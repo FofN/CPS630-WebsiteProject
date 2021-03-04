@@ -120,7 +120,7 @@ include 'scripts/post_manager.php';
                         <label for="txtOrigin"><strong>Origin</strong></label>
                         <br>
 
-                        <input id="txtOrigin" name="txtOrigin" class="controls" type="text" form="formAddFlowerToCart" value="<?php echo (isset($selectedStore))?$selectedStore:'';?>">
+                        <input id="txtOrigin" name="txtOrigin" class="controls" type="text" form="formAddFlowerToCart" value="<?php echo (isset($selectedStore))?$selectedStore:'';?>" readonly>
                         <br>
                         <br>
 
