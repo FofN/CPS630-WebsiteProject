@@ -123,7 +123,10 @@ include 'scripts/post_manager.php';
                         <input id="txtDateTime" name="txtDateTime" type="datetime-local" form="formDrive">
                         <br>
                         <br>
-
+                        <label for="distance"><strong>Distance</strong></label>
+                        <br>
+                        <input id="distance" name="distance" type="text" form="formDrive" disabled>
+                        <br>
                         <div>
                             <button type="submit" id="btnAddToCart" name="btnAddToCart" class="btn btn-secondary m-2">Add to Cart</button>
                             <button type="reset" id="btnClear" name="btnClear" class="btn btn-danger m-2">Clear</button>
