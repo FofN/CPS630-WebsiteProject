@@ -62,7 +62,7 @@ include 'scripts/post_manager.php';
                 <!-- Navbar options right -->
                 <div class="navbar-nav ml-auto">
                     <a class="nav-link" href="shopping_cart.php">Shopping Cart</a>
-                    <a class="nav-link" href="sign_up.html">Sign Up</a>
+                    <a class="nav-link" href="sign_up.php">Sign Up</a>
                 </div>
             </div>
         </nav>

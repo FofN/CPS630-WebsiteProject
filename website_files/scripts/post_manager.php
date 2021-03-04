@@ -1,5 +1,14 @@
 <?php
 
+try {
+    $connectionString = "mysql:host=localhost;dbname=cps630database";
+    $user = "root";
+    $pass = "";
+    $pdo = new PDO($connectionString, $user, $pass);
+} catch (PDOException $e) {
+    die($e->getMessage());
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST["btnAddToCart"])) {
@@ -68,6 +77,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         }
 
+    } elseif (isset($_POST["btnSignUp"])) {
+        $sql_query = "INSERT INTO users (user_id, name, phone_number, email, address, city_code, login_id, password, balance) VALUES (NULL, :n, :pn, :e, :add, :c, :l, :pw, 0);";
+        $statement = $pdo->prepare($sql_query);
+        $statement->bindValue(":n", $_POST["name"]);
+        $statement->bindValue(":pn", $_POST["tel"]);
+        $statement->bindValue(":e", $_POST["email"]);
+        $statement->bindValue(":add", $_POST["address"]);
+        $statement->bindValue(":c", $_POST["city"]);
+        $statement->bindValue(":l", $_POST["login_id"]);
+        $statement->bindValue(":pw", $_POST["pw"]);
+        $statement->execute();
+        echo "Signed up!";
+    } elseif (isset($_POST["btnLogin"])) {
+        $user = $_POST["login_id"];
+        $pw = $_POST["pw"];
+        $sql_retrieve = "SELECT * FROM users WHERE login_id=:us AND password=:pw";
+        $retrieved_user = $pdo->prepare($sql_retrieve);
+        $retrieved_user->bindValue(":us", $user);
+        $retrieved_user->bindValue(":pw", $pw);
+        $retrieved_user->execute(); 
+        $row = $retrieved_user->fetch();
+        if(!$row){
+            echo "Try again, either username or password is wrong.";
+        } else {
+            echo "Logged in successfully.";
+        }
     }
 
 }

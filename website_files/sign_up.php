@@ -5,15 +5,20 @@ Section 2 Members:
 	Diwei Guan		500879852
 	Deep Oza		500830262
 -->
+<?php
+session_start();
+
+include 'scripts/connect_to_database.php';
+include 'scripts/post_manager.php';
+?>
 
 <!DOCTYPE html>
-
 <html>
     <head>
         <title>Buber Home</title>
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="http://localhost/CPS630/Project1/proj1.css"/>
+        <link rel="stylesheet" href="proj1.css"/>
         <link rel="stylesheet" href="style.css"/>
 
     </head>
@@ -70,21 +75,22 @@ Section 2 Members:
                     <button type="button" class="toggle-btn"onclick="register()">SignUp</button>
                 </div>
                 <!-- First form for login (username & password)-->
-                <form id="login"class="input-group">
-                    <input type="text" class="input-field" placeholder="User Id" required>
-                    <input type="text" class="input-field" placeholder="Enter Password" required>
-                    <label><input type="checkbox" /> Remember Password </label>
-                    <button type="Submit" class="submit-btn">Login</button>
+                <form id="login" action="sign_up.php" class="input-group" method="POST">
+                    <input type="text" class="input-field" name="login_id" placeholder="User Id" required>
+                    <input type="text" class="input-field" name="pw" placeholder="Enter Password" required>
+                    <button type="submit" name="btnLogin" class="submit-btn">Login</button>
                 </form>
                 <!-- Second form for register (userId, Password, address, tel no )-->
-                <form id="register" class="input-group">
-                    <input type="text" class="input-field" placeholder="User Id" required>
-                    <input type="email" class="input-field" placeholder="Email Id" required>
-                    <input type="text" class="input-field" placeholder="Enter Password" required>
-                    <input type="text" class="input-field" placeholder="Tel No." required>
-                    <input type="text" class="input-field" placeholder="Address" required>
-                    <label><input type="checkbox" /> I Agree to Terms & Conditions </label>
-                    <button type="Submit" class="submit-btn">Register</button>
+                <form id="register" action="sign_up.php" class="input-group" method="POST">
+                    <input type="text" class="input-field" name="login_id" placeholder="User Id" required>
+                    <input type="text" class="input-field" name="name" placeholder="Name" required>
+                    <input type="email" class="input-field" name="email" placeholder="Email Id" required>
+                    <input type="text" class="input-field" name="tel" placeholder="Phone Number" required>
+                    <input type="password" class="input-field" name="pw" placeholder="Enter Password" required>
+                    <input type="text" class="input-field" name="address" placeholder="Address" required>
+                    <input type="text" class="input-field" name="city" placeholder="City" required>
+                    <label><input type="checkbox" required/> I Agree to Terms & Conditions </label>
+                    <button type="submit" name="btnSignUp" class="submit-btn">Register</button>
                 </form>
             </div>
         </div>
