@@ -1,5 +1,5 @@
 <!--
-CPS630 - Project I and II
+CPS630 - Project Iteration 1
 Section 2 Members:
 	Justin Maliwat	500899430
 	Diwei Guan		500879852
@@ -13,7 +13,9 @@ Section 2 Members:
         <title>Buber Home</title>
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="proj1.css"/>
+        <link rel="stylesheet" href="http://localhost/CPS630/Project1/proj1.css"/>
+        <link rel="stylesheet" href="style.css"/>
+
     </head>
 
     <body>
@@ -31,7 +33,7 @@ Section 2 Members:
                 <div class="navbar-nav mr-auto">
   
                     <!-- Links -->
-                    <a class="nav-link active" aria-current="page" href="main.html">Home</a>
+                    <a class="nav-link" aria-current="page" href="main.html">Home</a>
                     <a class="nav-link" href="about_us.html">About Us</a>
                     <a class="nav-link" href="contact_us.html">Contact Us</a>
                     <a class="nav-link" href="#">Reviews</a>
@@ -52,35 +54,64 @@ Section 2 Members:
                 <!-- Navbar options right -->
                 <div class="navbar-nav ml-auto">
                     <a class="nav-link" href="shopping_cart.php">Shopping Cart</a>
-                    <a class="nav-link" href="sign_up.html">Sign Up</a>
+                    <a class="nav-link active" href="sign_up.html">Sign Up</a>
                 </div>
             </div>
         </nav>
         <!-- Navbar End -->
 
-        <!-- Body Start -->
-        <div class="container-fluid">
-            <div class="row justify-content-center bg-white">
-                <div class="col-9 text-center">
-                    <img src="https://i.ytimg.com/vi/_nu5m7WrMD0/maxresdefault.jpg"><br>
-                    <span>ducc</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Body End -->
 
-        <!-- Footer Start -->
-        <footer class="fixed-bottom container-fluid">
-            <div class="row justify-content-center bg-dark text-white">
-                <div class="col-9 p-5">
-                    <span>Footer</span>
+          <!-- Starting of the two forms-->
+        <div class="hero" >
+            <div class="form-box">
+                <div class="button-box">
+                    <div id="btn"></div>
+                    <button type="button" class="toggle-btn"onclick="login()">Log In</button>
+                    <button type="button" class="toggle-btn"onclick="register()">SignUp</button>
                 </div>
+                <!-- First form for login (username & password)-->
+                <form id="login"class="input-group">
+                    <input type="text" class="input-field" placeholder="User Id" required>
+                    <input type="text" class="input-field" placeholder="Enter Password" required>
+                    <label><input type="checkbox" /> Remember Password </label>
+                    <button type="Submit" class="submit-btn">Login</button>
+                </form>
+                <!-- Second form for register (userId, Password, address, tel no )-->
+                <form id="register" class="input-group">
+                    <input type="text" class="input-field" placeholder="User Id" required>
+                    <input type="email" class="input-field" placeholder="Email Id" required>
+                    <input type="text" class="input-field" placeholder="Enter Password" required>
+                    <input type="text" class="input-field" placeholder="Tel No." required>
+                    <input type="text" class="input-field" placeholder="Address" required>
+                    <label><input type="checkbox" /> I Agree to Terms & Conditions </label>
+                    <button type="Submit" class="submit-btn">Register</button>
+                </form>
             </div>
-        </footer>
-        <!-- Footer End -->
 
-    </body>
+    </div>
+
+
+<!-- Letting the forms slide from "Log in" to "SignUp"-->
+<script>
+
+var x=document.getElementById("login");
+var y=document.getElementById("register");
+var z=document.getElementById("btn");
+
+function register() {
+    x.style.left = "-400px";
+    y.style.left = "50px";
+    z.style.left = "110px";
+}
+
+function login() {
+    x.style.left = "50px";
+    y.style.left = "450px";
+    z.style.left = "0";
+}
+</script> 
+
+	</body>
 
     <!-- Optional JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

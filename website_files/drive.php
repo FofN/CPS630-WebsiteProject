@@ -31,38 +31,38 @@ include 'scripts/post_manager.php';
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand navbar-dark bg-dark">
             <div class="container-fluid">
-
+  
                 <!-- Title of NavBar -->
                 <a class="navbar-brand" href="main.html">
                     Buber
                 </a>
-
+  
                 <!-- Navbar options left -->
                 <div class="navbar-nav mr-auto">
-
+  
                     <!-- Links -->
                     <a class="nav-link" aria-current="page" href="main.html">Home</a>
-                    <a class="nav-link" href="#">About Us</a>
-                    <a class="nav-link" href="#">Contact Us</a>
+                    <a class="nav-link" href="about_us.html">About Us</a>
+                    <a class="nav-link" href="contact_us.html">Contact Us</a>
                     <a class="nav-link" href="#">Reviews</a>
-
+  
                     <!-- Serivces -->
                     <div class="dropdown">
                         <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Types of Services
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item active" href="#">Buber Drive</a>
+                            <a class="dropdown-item active" href="drive.php">Buber Drive</a>
                             <a class="dropdown-item" href="delivery.php">Buber Delivery</a>
                         </div>
                     </div>
                     
                 </div>
-
+  
                 <!-- Navbar options right -->
                 <div class="navbar-nav ml-auto">
                     <a class="nav-link" href="shopping_cart.php">Shopping Cart</a>
-                    <a class="nav-link" href="#">Sign Up</a>
+                    <a class="nav-link" href="sign_up.html">Sign Up</a>
                 </div>
             </div>
         </nav>
