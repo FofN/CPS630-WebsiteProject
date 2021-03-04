@@ -75,11 +75,10 @@ include 'scripts/post_manager.php';
                     <button type="button" class="toggle-btn"onclick="register()">SignUp</button>
                 </div>
                 <!-- First form for login (username & password)-->
-                <form id="login"class="input-group">
-                    <input type="text" class="input-field" name="userId" placeholder="User Id" required>
-                    <input type="text" class="input-field" name="pass" placeholder="Enter Password" required>
-                    <label><input type="checkbox" /> Remember Password </label>
-                    <button type="Submit" class="submit-btn">Login</button>
+                <form id="login" action="sign_up.php" class="input-group" method="POST">
+                    <input type="text" class="input-field" name="login_id" placeholder="User Id" required>
+                    <input type="text" class="input-field" name="pw" placeholder="Enter Password" required>
+                    <button type="submit" name="btnLogin" class="submit-btn">Login</button>
                 </form>
                 <!-- Second form for register (userId, Password, address, tel no )-->
                 <form id="register" action="sign_up.php" class="input-group" method="POST">

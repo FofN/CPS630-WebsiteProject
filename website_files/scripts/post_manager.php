@@ -87,7 +87,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $statement->bindValue(":l", $_POST["login_id"]);
         $statement->bindValue(":pw", $_POST["pw"]);
         $statement->execute();
-        echo "Signed up!"
+        echo "Signed up!";
+    } elseif (isset($_POST["btnLogin"])) {
+        $user = $_POST["login_id"];
+        $pw = $_POST["pw"];
+        $sql_retrieve = "SELECT * FROM users WHERE login_id=:us AND password=:pw";
+        $retrieved_user = $pdo->prepare($sql_retrieve);
+        $retrieved_user->bindValue(":us", $user);
+        $retrieved_user->bindValue(":pw", $pw);
+        $retrieved_user->execute(); 
+        $row = $retrieved_user->fetch();
+        if(!$row){
+            echo "Try again, either username or password is wrong.";
+        } else {
+            echo "Logged in successfully.";
+        }
     }
 
 }
