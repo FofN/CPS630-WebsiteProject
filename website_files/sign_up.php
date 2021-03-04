@@ -18,7 +18,7 @@ include 'scripts/post_manager.php';
         <title>Buber Home</title>
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="http://192.168.64.2/cps630/project1/proj1.css"/>
+        <link rel="stylesheet" href="proj1.css"/>
         <link rel="stylesheet" href="style.css"/>
 
     </head>
