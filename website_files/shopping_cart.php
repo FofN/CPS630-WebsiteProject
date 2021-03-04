@@ -53,7 +53,7 @@ include 'scripts/post_manager.php';
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="drive.php">Buber Drive</a>
-                            <a class="dropdown-item" href="#">Buber Delivery</a>
+                            <a class="dropdown-item" href="delivery.php">Buber Delivery</a>
                         </div>
                     </div>
                     

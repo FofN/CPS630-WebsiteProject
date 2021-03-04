@@ -46,6 +46,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         session_destroy();
         header("Refresh:0");
         
+    } elseif (isset($_POST["btnChooseStore"])) {
+
+        $selectedStore = $_POST["dropStores"];
+
+    } elseif (isset($_POST["btnAddFlowersToCart"])) {
+
+        // If the arrays aren't created, create them
+        if (!isset($_SESSION["arrDestin"])) {
+
+            // Trip/Delivery Table
+            $_SESSION["arrSource"] = array();
+            $_SESSION["arrDestin"] = array();
+            $_SESSION["arrDistance"] = array();
+            $_SESSION["arrCar"] = array();
+            $_SESSION["arrPrice"] = array();
+
+            // Order
+            $_SESSION["arrDateTime"] = array();
+
+        }
+
     }
 
 }
