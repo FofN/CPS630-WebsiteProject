@@ -24,6 +24,7 @@ include 'scripts/post_manager.php';
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="proj1.css"/>
         <script src="./map.js"></script>
+        
     </head>
 
     <body>
@@ -72,7 +73,7 @@ include 'scripts/post_manager.php';
         <div class="container-fluid">
             
             <div class="row justify-content-center bg-secondary">
-                <div class="col-3 text-center bg-white">
+                <div class="col-4 text-center bg-white">
                     
                     <script
                         src="https://maps.googleapis.com/maps/api/js?key=<?php include 'scripts/apikey.php';?>&callback=showMap&libraries=places&v=weekly"
@@ -139,15 +140,13 @@ include 'scripts/post_manager.php';
                         <br>
                         <br>
 
-                        <p id="totalprice">Total Price: $0</p>
-
                         <button type="submit" id="btnAddFlowersToCart" name="btnAddFlowersToCart" class="btn btn-secondary m-2">Add Items to Cart</button>
 
                     </form>
 
                 </div>
 
-                <div class="row col-7">
+                <div class="row col-4" ondrop="drop(event)" ondragover="allowDrop(event)">
 
                 <?php
 
@@ -158,11 +157,10 @@ include 'scripts/post_manager.php';
                         $result = $pdo->query($sql);
                         while ($row = $result->fetch()) {
                             
-                            echo '<div class="col-2 text-center bg-white ml-3 my-3 align-self-start">';
-                            echo '<img class="store-item" src=' . $row["image_link"] . '><br>';
+                            echo '<div class="store-item col-2 text-center bg-white border border-secondary ml-3 my-3 align-self-start" id="' . $row["flower_id"] . '" value="' . $row["price"] . '" draggable="true" ondragstart="drag(event)">';
+                            echo '<img class="store-item-img" src=' . $row["image_link"] . ' draggable="false"><br>';
                             echo '<span>' . $row["flower_name"] . '</span><br>';
-                            echo '<span>$' . $row["price"] . ' CDN</span><br>';
-                            echo '<input class="radio-item" type="radio" id="' . $row["flower_id"] . '" name="' . $row["flower_id"] . '" value=' . $row["price"] . '>';
+                            echo '<span id="store-item-price">$' . $row["price"] . ' CDN</span><br>';
                             echo "</div>";
                             
                         }
@@ -175,6 +173,16 @@ include 'scripts/post_manager.php';
                 ?>
 
                 </div>
+
+                <div class="d-flex flex-column col-4">
+                    <div class="text-center">
+                        <p id="totalprice">Total Price: $0</p>
+                    </div>
+                    <div class="w-100 h-100 row bg-white text-center border" id="cart" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        
+                    </div>
+                </div>
+
             </div>
         </div>
         <!-- Menu End -->
@@ -196,18 +204,23 @@ include 'scripts/post_manager.php';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
-        $(".radio-item").change(function() {
-            var radiobuttons = document.querySelectorAll(".radio-item");
+        function allowDrop(ev) { 
+            ev.preventDefault();
+        }
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
 
-            for (i = 0; i < radiobuttons.length; i++) {
-                if (radiobuttons[i].checked) {
-                    total = parseInt(checkboxes[i].value);
-                }
+            var items = document.getElementById("cart").children;
+            var total = 0;
+            for (i = 0; i < items.length; i++) {
+                total += parseFloat(items[i].getAttribute("value"));
             }
-            var temp = "Total Price: $";
-            var result = temp.concat(String(total));
-            
-            $("#totalprice").html(result);
-        });
+            document.getElementById("totalprice").innerHTML = "Total Price: $" + total;
+        }
     </script>
 </html>
