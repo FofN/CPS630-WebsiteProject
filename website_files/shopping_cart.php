@@ -75,52 +75,106 @@ include 'scripts/post_manager.php';
                 <!-- Shopping Cart -->
                 <div class="col-7 text-center bg-white pt-2 pb-4">
 
-                    <!-- PHP Database -->
-                    <?php
-                        if (isset($_SESSION["arrDestin"]) && count($_SESSION["arrDestin"]) > 0) {
-                            echo "<h2>Shopping Cart</h2>";
-                            echo '<table style="border-width:5px; width: 100%;">';
+                    <div>
+                        <!-- PHP Database -->
+                        <?php
+                            if (isset($_SESSION["arrTypeOfOrder"]) && count($_SESSION["arrTypeOfOrder"]) > 0) {
+                                echo "<h2>Shopping Cart</h2>";
+                                echo '<table style="border-width:5px; width: 100%;">';
 
-                            echo "<tr>";
-                            echo "<th>#</th>";
-                            echo "<th>Car</th>";
-                            echo "<th>Origin</th>";
-                            echo "<th>Destination</th>";
-                            echo "<th>Distance (km)</th>";
-                            echo "<th>Price</th>";
-                            echo "</tr>";
-
-                            for ($i = 0; $i < count($_SESSION["arrDestin"]); $i++) {
                                 echo "<tr>";
-                                echo "<td>" . $i+1 . "</td>";
-                                echo "<td>" . $_SESSION["arrCar"][$i] . "</td>";
-                                echo "<td>" . $_SESSION["arrSource"][$i] . "</td>";
-                                echo "<td>" . $_SESSION["arrDestin"][$i] . "</td>";
-                                echo "<td>" . $_SESSION["arrDistance"][$i] . "</td>";
-                                echo "<td>" . "Unfinished" . "</td>";
+                                echo "<th>#</th>";
+                                echo "<th>Car</th>";
+                                echo "<th>Origin</th>";
+                                echo "<th>Destination</th>";
+                                echo "<th>Distance (km)</th>";
+                                echo "<th>Price</th>";
+                                echo "<th>Order</th>";
                                 echo "</tr>";
-                            }
-                            echo "</table>";
-                        } else {
-                            echo "Shopping Cart Empty";
-                        }
-                    ?>
 
+                                for ($i = 0; $i < count($_SESSION["arrTypeOfOrder"]); $i++) {
+                                    if ($_SESSION["arrTypeOfOrder"][$i] == 0) {
+                                        echo "<tr>";
+                                        echo "<td>" . $i+1 . "</td>";
+                                        echo "<td>" . $_SESSION["arrCar"][$i] . "</td>";
+                                        echo "<td>" . $_SESSION["arrSource"][$i] . "</td>";
+                                        echo "<td>" . $_SESSION["arrDestin"][$i] . "</td>";
+                                        echo "<td>" . $_SESSION["arrDistance"][$i] . "</td>";
+                                        echo '<td class="item-price">' . $_SESSION["arrPrice"][$i] . "</td>";
+                                        echo "<td>Drive Order</td>";
+                                        echo "</tr>";
+                                    } else {
+                                        if (isset($pdo)) {
+                                            echo "<tr>";
+                                            echo "<td>" . $i+1 . "</td>";
+                                            echo "<td>" . $_SESSION["arrCar"][$i] . "</td>";
+                                            echo "<td>" . $_SESSION["arrSource"][$i] . "</td>";
+                                            echo "<td>" . $_SESSION["arrDestin"][$i] . "</td>";
+                                            echo "<td>" . $_SESSION["arrDistance"][$i] . "</td>";
+                                            echo "<td>" . $_SESSION["arrPrice"][$i] . "</td>";
+                                            echo "<td>Delivery Order</td>";
+                                            echo "</tr>";
+
+                                            echo "<tr>";
+                                            echo '<td colspan="7">';
+                                            echo '<table style="width: 100%;">';
+                                            
+                                            for ($j = 0; $j < count($_SESSION["arrItems"][$i]); $j++) {
+                                                $sql = 'SELECT * FROM flowers WHERE flower_id = "' . $_SESSION["arrItems"][$i][$j] . '"';
+                                                $result = $pdo->query($sql);
+                                                while ($row = $result->fetch()) {
+                                                    echo "<tr>";
+                                                    echo "<td>" . $row["flower_name"] . "</td>";
+                                                    echo '<td><img class="store-item-img" src=' . $row["image_link"] . ' draggable="false"></td>';
+                                                    echo '<td>' . $row["price"] . "</td>";
+                                                    echo "</tr>";
+                                                }
+                                            }
+
+                                            echo '</table>';
+                                            echo "</td>";
+                                            echo "</tr>";
+                                        } else {
+                                            echo 'not connected to database';
+                                        }
+                                        
+                                    }
+                                    
+                                }
+                                echo "</table>";
+                            } else {
+                                echo "Shopping Cart Empty";
+                            }
+                        ?>
+                    </div>
                 </div>
 
                 <!-- Confirm Payment Tab -->
-                <div class="col-2 text-center bg-white my-auto">
-                    <form id="formConfirmPayment" action="shopping_cart.php" method="POST">
-                        <button type="submit" id="btnConfirmPayment" name="btnConfirmPayment" class="btn btn-secondary m-2">Confirm Purchase</button>
-                        <button type="submit" id="btnClearCart" name="btnClearCart" class="btn btn-danger m-2">Empty Cart</button>
-                    </form>
-                </div>
+                <?php
+                if (isset($_SESSION["arrPrice"])) {
+                    echo '<div class="col-2 text-center bg-white my-auto">';
+                    
+                    $total = 0;
+
+                    for ($i = 0; $i < count($_SESSION["arrPrice"]); $i++) {
+                        $total += $_SESSION["arrPrice"][$i];
+                    }
+
+                    echo 'Total: $' . $total . ' CDN';
+
+                    echo '<form id="formConfirmPayment" action="shopping_cart.php" method="POST">';
+                    echo '<button type="submit" id="btnConfirmPayment" name="btnConfirmPayment" class="btn btn-secondary m-2">Confirm Purchase</button>';
+                    echo '<button type="submit" id="btnClearCart" name="btnClearCart" class="btn btn-danger m-2">Empty Cart</button>';
+                    echo '</form>';
+                    echo '</div>';
+                }
+                ?>
 
             </div>
         </div>
         <!-- Menu End -->
 
-        <!-- Footer Start -->
+        <!-- Footer Start
         <footer class="fixed-bottom container-fluid">
             <div class="row justify-content-center bg-dark text-white">
                 <div class="col-9 p-5">
@@ -128,7 +182,7 @@ include 'scripts/post_manager.php';
                 </div>
             </div>
         </footer>
-        <!-- Footer End -->
+        Footer End -->
 
     </body>
 

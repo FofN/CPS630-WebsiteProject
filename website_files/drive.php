@@ -24,6 +24,7 @@ include 'scripts/post_manager.php';
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="proj1.css"/>
         <script src="./map.js"></script>
+        <script src="./scripts/pricing.js"></script>
     </head>
 
     <body>
@@ -127,6 +128,11 @@ include 'scripts/post_manager.php';
                         <br>
                         <input id="distance" name="distance" type="text" form="formDrive" readonly>
                         <br>
+                        <br>
+                        <label for="price"><strong>Price</strong></label>
+                        <br>
+                        <input id="price" name="price" type="text" form="formDrive" value="0" readonly>
+                        <br>
                         <div>
                             <button type="submit" id="btnAddToCart" name="btnAddToCart" class="btn btn-secondary m-2">Add to Cart</button>
                             <button type="reset" id="btnClear" name="btnClear" class="btn btn-danger m-2">Clear</button>
@@ -163,4 +169,11 @@ include 'scripts/post_manager.php';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+        $("#distance").on("change", "input", function() {
+            alert( "Handler for .change() called." );
+            document.getElementById("price").value = pricePerKm * document.getElementById("distance").value;
+        });
+    </script>
 </html>

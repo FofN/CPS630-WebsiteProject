@@ -140,6 +140,14 @@ include 'scripts/post_manager.php';
                         <br>
                         <br>
 
+                        <!-- Price -->
+                        <label for="distance"><strong>Distance</strong></label>
+                        <br>
+
+                        <input id="distance" name="distance" type="text" form="formAddFlowerToCart" readonly>
+                        <br>
+                        <br>
+
                         <button type="submit" id="btnAddFlowersToCart" name="btnAddFlowersToCart" class="btn btn-secondary m-2">Add Items to Cart</button>
 
                     </form>
@@ -157,10 +165,11 @@ include 'scripts/post_manager.php';
                         $result = $pdo->query($sql);
                         while ($row = $result->fetch()) {
                             
-                            echo '<div class="store-item col-2 text-center bg-white border border-secondary ml-3 my-3 align-self-start" id="' . $row["flower_id"] . '" value="' . $row["price"] . '" draggable="true" ondragstart="drag(event)">';
+                            echo '<div class="store-item col-2 text-center bg-white border border-secondary ml-3 my-3 align-self-start" id="' . $row["flower_id"] . '" value="' . $row["flower_id"] . '" draggable="true" ondragstart="drag(event)">';
+                            echo '<input type="hidden" value="' . $row["flower_id"] . '">';
                             echo '<img class="store-item-img" src=' . $row["image_link"] . ' draggable="false"><br>';
                             echo '<span>' . $row["flower_name"] . '</span><br>';
-                            echo '<span id="store-item-price">$' . $row["price"] . ' CDN</span><br>';
+                            echo '<span id="store-item-price" value="' . $row["price"] . '">$' . $row["price"] . ' CDN</span><br>';
                             echo "</div>";
                             
                         }
@@ -176,7 +185,7 @@ include 'scripts/post_manager.php';
 
                 <div class="d-flex flex-column col-4">
                     <div class="text-center">
-                        <p id="totalprice">Total Price: $0</p>
+                        <input id="totalprice" name="totalprice" type="text" value="0" form="formAddFlowerToCart" readonly>
                     </div>
                     <div class="w-100 h-100 row bg-white text-center border" id="cart" ondrop="drop(event)" ondragover="allowDrop(event)">
                         
@@ -213,14 +222,30 @@ include 'scripts/post_manager.php';
         function drop(ev) {
             ev.preventDefault();
             var data = ev.dataTransfer.getData("text");
+
+            if (ev.target == document.getElementById("cart")) {
+                document.getElementById(data).children[0].setAttribute("name", "flower[]");
+                document.getElementById(data).children[0].setAttribute("form", "formAddFlowerToCart");
+                console.log("saveme");
+            }
+
+            if (ev.target != document.getElementById("cart")) {
+                document.getElementById(data).children[0].setAttribute("name", "");
+                document.getElementById(data).children[0].setAttribute("form", "");
+                console.log("lol");
+            }
+
             ev.target.appendChild(document.getElementById(data));
 
             var items = document.getElementById("cart").children;
             var total = 0;
             for (i = 0; i < items.length; i++) {
-                total += parseFloat(items[i].getAttribute("value"));
+                total += parseFloat(items[i].children[5].getAttribute("value"));
             }
-            document.getElementById("totalprice").innerHTML = "Total Price: $" + total;
+            document.getElementById("totalprice").setAttribute("value", total);
+
+            
+            
         }
     </script>
 </html>

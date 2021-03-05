@@ -1,20 +1,14 @@
 <?php
 
-try {
-    $connectionString = "mysql:host=localhost;dbname=cps630database";
-    $user = "root";
-    $pass = "";
-    $pdo = new PDO($connectionString, $user, $pass);
-} catch (PDOException $e) {
-    die($e->getMessage());
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST["btnAddToCart"])) {
 
         // If the arrays aren't created, create them
         if (!isset($_SESSION["arrDestin"])) {
+
+            // Type
+            $_SESSION["arrTypeOfOrder"] = array();
 
             // Trip/Delivery Table
             $_SESSION["arrSource"] = array();
@@ -25,21 +19,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Order
             $_SESSION["arrDateTime"] = array();
+            $_SESSION["arrItems"] = array();
 
         }
 
         // Append the inputted information to the arrays
+
+        // Type
+        $_SESSION["arrTypeOfOrder"][] = 0;
+
         // Trip/Delivery Table
         $_SESSION["arrSource"][] = $_POST["txtOrigin"];
         $_SESSION["arrDestin"][] = $_POST["txtDestin"];
-        echo $_POST["distance"];
         $_SESSION["arrDistance"][] = $_POST["distance"];
-        //$_SESSION["arrPrice"][] = $_POST["dropTypes"];
-        
+        $_SESSION["arrPrice"][] = $_POST["price"];
         $_SESSION["arrCar"][] = $_POST["dropCars"];
 
         // Order
-        //$_SESSION["arrDateTime"][] = $_POST["dropGenres"];
+        $_SESSION["arrDateTime"][] = $_POST["txtDateTime"];
+        $_SESSION["arrItems"][] = "";
 
         $message = "Added to Cart!";
         echo "<script>alert('$message');</script>";
@@ -53,6 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $message = "Purchase Confirmed!";
         echo "<script>alert('$message');</script>";
+
+        // SEND SHOPPING CART ITEMS TO DATABASE
+
         session_destroy();
         header("Refresh:0");
         
@@ -65,6 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // If the arrays aren't created, create them
         if (!isset($_SESSION["arrDestin"])) {
 
+            // Type
+            $_SESSION["arrTypeOfOrder"] = array();
+
             // Trip/Delivery Table
             $_SESSION["arrSource"] = array();
             $_SESSION["arrDestin"] = array();
@@ -74,8 +78,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Order
             $_SESSION["arrDateTime"] = array();
+            $_SESSION["arrItems"] = array();
 
         }
+
+        // Append the inputted information to the arrays
+
+        // Type
+        $_SESSION["arrTypeOfOrder"][] = 1;
+
+        // Trip/Delivery Table
+        $_SESSION["arrSource"][] = $_POST["txtOrigin"];
+        $_SESSION["arrDestin"][] = $_POST["txtDestin"];
+        $_SESSION["arrDistance"][] = $_POST["distance"];
+        $_SESSION["arrPrice"][] = $_POST["totalprice"];
+        $_SESSION["arrCar"][] = "Delivery Car";
+
+        // Order
+        $_SESSION["arrDateTime"][] = $_POST["txtDateTime"];
+        $_SESSION["arrItems"][] = $_POST["flower"];
+
+        $message = "Added to Cart!";
+        echo "<script>alert('$message');</script>";
 
     } elseif (isset($_POST["btnSignUp"])) {
         $sql_query = "INSERT INTO users (user_id, name, phone_number, email, address, city_code, login_id, password, balance) VALUES (NULL, :n, :pn, :e, :add, :c, :l, :pw, 0);";
@@ -89,6 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $statement->bindValue(":pw", $_POST["pw"]);
         $statement->execute();
         echo "Signed up!";
+
     } elseif (isset($_POST["btnLogin"])) {
         $user = $_POST["login_id"];
         $pw = $_POST["pw"];

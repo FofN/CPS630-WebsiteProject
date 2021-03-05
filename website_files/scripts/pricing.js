@@ -1,0 +1,1 @@
+var pricePerKm = 0.5;
