@@ -182,6 +182,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Logged in successfully.";
         $_SESSION['userLoggedIn'] = $user;
         }
+    } elseif (isset($_POST["btnSearch"])) {
+        $temp = explode(',',$_POST['txtSearch']);
+        $searchedUserID = $temp[0];
+        $searchedOrderID = $temp[1];
+        // apply sql search queries and show in a table
     }
 
 }
