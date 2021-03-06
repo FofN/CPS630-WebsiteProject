@@ -10,6 +10,7 @@ session_start();
 
 include 'scripts/connect_to_database.php';
 include 'scripts/post_manager.php';
+include 'scripts/login_manager.php';
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +31,7 @@ include 'scripts/post_manager.php';
             <div class="container-fluid">
   
                 <!-- Title of NavBar -->
-                <a class="navbar-brand" href="main.html">
+                <a class="navbar-brand" href="main.php">
                     Buber
                 </a>
   
@@ -38,7 +39,7 @@ include 'scripts/post_manager.php';
                 <div class="navbar-nav mr-auto">
   
                     <!-- Links -->
-                    <a class="nav-link" aria-current="page" href="main.html">Home</a>
+                    <a class="nav-link" aria-current="page" href="main.php">Home</a>
                     <a class="nav-link" href="about_us.html">About Us</a>
                     <a class="nav-link" href="contact_us.html">Contact Us</a>
                     <a class="nav-link" href="#">Reviews</a>

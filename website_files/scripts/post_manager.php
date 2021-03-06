@@ -54,6 +54,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // SEND SHOPPING CART ITEMS TO DATABASE
 
+        // If info is being saved, we INSERT the info into the table
+        for ($i = 0; $i < count($_SESSION["arrTypeOfOrder"]); $i++) {
+
+            $currentDate = date("YYYY-mm-dd H:i:sa");
+            $dateDone = $_SESSION["arrDateTime"][$i];
+            $price = $_SESSION["arrPrice"][$i];
+            $user = "CurrentUser";
+            $type = $_SESSION["arrTypeOfOrder"][$i];
+            $origin = $_SESSION["arrSource"][$i];
+            $destin = $_SESSION["arrDestin"][$i];
+            $distance = $_SESSION["arrDistance"][$i];
+            $carID = 1;
+
+            $sql = "INSERT INTO trips (trip_id, source_code, destin_code, distance, car_id, price) VALUES (NULL, :sc, :dc, :d, :ci, :p);";
+            $statement = $pdo->prepare($sql);
+            $statement->bindValue(":sc", $origin);
+            $statement->bindValue(":dc", $destin);
+            $statement->bindValue(":d", $distance);
+            $statement->bindValue(":ci", $carID);
+            $statement->bindValue(":p", $price);
+            $statement->execute();
+
+            $sql = 'SELECT MAX(trip_id) AS largest_id FROM trips;';
+            $result = $pdo->query($sql);
+            $row = $result->fetch();
+            $tripID = $row["largest_id"];
+
+            if ($_SESSION["arrTypeOfOrder"][$i] == 0) {
+                $sql = "INSERT INTO orders (order_id, datetime_issued, datetime_done, price, user_id, trip_id, flower_id) VALUES (NULL, :dti, :dtd, :p, :ui, :ti, :fi);";
+                $statement = $pdo->prepare($sql);
+                $statement->bindValue(":dti", $currentDate);
+                $statement->bindValue(":dtd", $dateDone);
+                $statement->bindValue(":p", $price);
+                $statement->bindValue(":ui", $user);
+                $statement->bindValue(":ti", $tripID);
+                $statement->bindValue(":fi", "NULL");
+                $statement->execute();
+            } else {
+                for ($j = 0; $j < count($_SESSION["arrItems"][$i]); $j++) {
+                    $sql = "INSERT INTO orders (order_id, datetime_issued, datetime_done, price, user_id, trip_id, flower_id) VALUES (NULL, :dti, :dtd, :p, :ui, :ti, :fi);";
+                    $statement = $pdo->prepare($sql);
+                    $statement->bindValue(":dti", $currentDate);
+                    $statement->bindValue(":dtd", $dateDone);
+                    $statement->bindValue(":p", $price);
+                    $statement->bindValue(":ui", $user);
+                    $statement->bindValue(":ti", $tripID);
+                    $statement->bindValue(":fi", $_SESSION["arrItems"][$i][$j]);
+                    $statement->execute();
+                }
+            }
+        }
+        
+
         session_destroy();
         header("Refresh:0");
         
@@ -127,6 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Try again, either username or password is wrong.";
         } else {
             echo "Logged in successfully.";
+        $_SESSION['userLoggedIn'] = $user;
         }
     }
 

@@ -6,6 +6,16 @@ Section 2 Members:
 	Deep Oza		500830262
 -->
 
+<?php
+
+session_start();
+
+include 'scripts/connect_to_database.php';
+include 'scripts/post_manager.php';
+include 'scripts/login_manager.php';
+
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -51,6 +61,7 @@ Section 2 Members:
   
                 <!-- Navbar options right -->
                 <div class="navbar-nav ml-auto">
+                    <a class="nav-link" href="search.php">Search</a>
                     <a class="nav-link" href="shopping_cart.php">Shopping Cart</a>
                     <a class="nav-link" href="sign_up.php">Sign Up</a>
                 </div>

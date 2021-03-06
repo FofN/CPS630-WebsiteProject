@@ -12,6 +12,7 @@ session_start();
 
 include 'scripts/connect_to_database.php';
 include 'scripts/post_manager.php';
+include 'scripts/login_manager.php';
 
 ?>
 
@@ -33,7 +34,7 @@ include 'scripts/post_manager.php';
             <div class="container-fluid">
   
                 <!-- Title of NavBar -->
-                <a class="navbar-brand" href="main.html">
+                <a class="navbar-brand" href="main.php">
                     Buber
                 </a>
   
@@ -41,7 +42,7 @@ include 'scripts/post_manager.php';
                 <div class="navbar-nav mr-auto">
   
                     <!-- Links -->
-                    <a class="nav-link" aria-current="page" href="main.html">Home</a>
+                    <a class="nav-link" aria-current="page" href="main.php">Home</a>
                     <a class="nav-link" href="about_us.html">About Us</a>
                     <a class="nav-link" href="contact_us.html">Contact Us</a>
                     <a class="nav-link" href="#">Reviews</a>
@@ -84,6 +85,7 @@ include 'scripts/post_manager.php';
 
                                 echo "<tr>";
                                 echo "<th>#</th>";
+                                echo "<th>Date</th>";
                                 echo "<th>Car</th>";
                                 echo "<th>Origin</th>";
                                 echo "<th>Destination</th>";
@@ -96,6 +98,7 @@ include 'scripts/post_manager.php';
                                     if ($_SESSION["arrTypeOfOrder"][$i] == 0) {
                                         echo "<tr>";
                                         echo "<td>" . $i+1 . "</td>";
+                                        echo "<td>" . $_SESSION["arrDateTime"][$i] . "</td>";
                                         echo "<td>" . $_SESSION["arrCar"][$i] . "</td>";
                                         echo "<td>" . $_SESSION["arrSource"][$i] . "</td>";
                                         echo "<td>" . $_SESSION["arrDestin"][$i] . "</td>";
@@ -107,6 +110,7 @@ include 'scripts/post_manager.php';
                                         if (isset($pdo)) {
                                             echo "<tr>";
                                             echo "<td>" . $i+1 . "</td>";
+                                            echo "<td>" . $_SESSION["arrDateTime"][$i] . "</td>";
                                             echo "<td>" . $_SESSION["arrCar"][$i] . "</td>";
                                             echo "<td>" . $_SESSION["arrSource"][$i] . "</td>";
                                             echo "<td>" . $_SESSION["arrDestin"][$i] . "</td>";
@@ -116,7 +120,7 @@ include 'scripts/post_manager.php';
                                             echo "</tr>";
 
                                             echo "<tr>";
-                                            echo '<td colspan="7">';
+                                            echo '<td colspan="8">';
                                             echo '<table style="width: 100%;">';
                                             
                                             for ($j = 0; $j < count($_SESSION["arrItems"][$i]); $j++) {
